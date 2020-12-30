@@ -36,7 +36,7 @@ public class clawCrainGame {
 		for(int i = 0; i < a.length; i++) {
 			Solution2(a[i],ar,count);
 		}
-		int [] val = Arrays.copyOf(value, val_idx+1);
+		int [] val = Arrays.copyOf(value, val_idx);
 		bomb(val);
 		return answer;
 	}
