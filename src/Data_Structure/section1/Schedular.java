@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Schedular {
 	Event [] events = new Event [100];
+	public int n = 0;
+	public int capacity = events.length;
 	private Scanner sc;
 	public void processCommand() {
 		sc = new Scanner(System.in);
@@ -23,15 +25,24 @@ public class Schedular {
 				}
 			}
 			else if(command.equals("list")) {
-				
+				handleList();
 			}
-			else if(command.equals("show")) {
-				
-			}
+//			else if(command.equals("show")) {
+//				
+//			}
 			else if(command.equals("exit")) {
 				break;
 			}
 				
+		}
+		sc.close();
+	}
+	private void handleList() {
+		if(events[0] == null) {
+			System.out.println("No Event");
+		}
+		for(int i = 0; i <= n; i++) {
+			System.out.println("\t"+events[i].toString());
 		}
 	}
 	private void hanndleAddDeadlineEvent() {
@@ -41,7 +52,7 @@ public class Schedular {
 		String title = sc.next();
 		
 		DeadlineEvent dl = new DeadlineEvent(title,ParseDateString(dateString));
-		
+		addEvent(dl);
 	}
 	private void hanndleAddDurationEvent() {
 		System.out.print("\tbegin : ");
@@ -52,7 +63,7 @@ public class Schedular {
 		String title = sc.next();
 		
 		DurationEvent de = new DurationEvent(title,ParseDateString(dateBegin),ParseDateString(dateEnd));
-		
+		addEvent(de);
 	}
 	private void hanndleAddOneDayEvent() {
 		System.out.print("\twhen : ");
@@ -61,6 +72,21 @@ public class Schedular {
 		String title = sc.next();
 		
 		OneDayEvent ev = new OneDayEvent(title,ParseDateString(dateString));
+		addEvent(ev);
+	}
+	public void addEvent(Event e) {
+		if(n >= capacity) {
+			realLocate();
+		}
+		events[n++] = e;
+	}
+	public void realLocate() {
+		Event [] tmp = new Event [capacity * 2];
+		for(int i = 0; i <= n; i++) {
+			tmp[i] = events[i];
+		}
+		events = tmp;
+		capacity *= 2;
 	}
 	public MyDate ParseDateString(String s) {
 		String [] token = s.split("/");
