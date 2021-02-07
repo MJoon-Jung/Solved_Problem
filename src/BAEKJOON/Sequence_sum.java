@@ -1,7 +1,7 @@
 package BAEKJOON;
 
 import java.util.Scanner;
-
+//BAEKJOON Problem 1912
 public class Sequence_sum {
 	static int [] ar;
 	static int [] dp;
