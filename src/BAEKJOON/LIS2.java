@@ -1,7 +1,7 @@
 package BAEKJOON;
 
 import java.util.Scanner;
-
+//BAEKJOON Problem 11055
 public class LIS2 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
