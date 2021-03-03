@@ -9,6 +9,7 @@ public class Fill_Tile {
 		int n = sc.nextInt();
 		int [] dp = new int [31];
 		
+		
 		dp[0] = 1; dp[2] = 3;
 		if(n <= 2) {
 			System.out.println(dp[n]);
